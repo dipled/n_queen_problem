@@ -15,13 +15,13 @@ maxLine l ll n = "(assert (not (or" ++ go l ll n
         go l (x : []) n = go (tail l) (tail l) (n - 1)
         go l (x : y : xs) n = " " ++ andify x y ++ go l (x : xs) n
 
-maxLines l n = concat $  map (\e -> maxLine e e n) (take n $ taker n l)
+maxLines l n = concat $  map (\e -> maxLine e e n) (take n $ liner n l)
 
 minLines [] = []
 minLines l@(x : xs) = minLine x ++ "\n" ++ minLines xs
 
-taker n [] = []
-taker n l = take n l : taker n (drop n l)
+liner n [] = []
+liner n l = take n l : liner n (drop n l)
 
 numbers = [(i,j) | i <- [0..queens - 1], j <- [0..queens - 1]]
 
@@ -29,6 +29,6 @@ numbers = [(i,j) | i <- [0..queens - 1], j <- [0..queens - 1]]
 main = do
 
     putStrLn $ getCons (numbers)
-    putStrLn $ minLines $ taker queens numbers
+    putStrLn $ minLines $ liner queens numbers
     putStrLn $ maxLines numbers queens
 
