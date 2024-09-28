@@ -1,5 +1,8 @@
 {
     "cSpell.words": [
         "concat"
+    ],
+    "cSpell.enableFiletypes": [
+        "!haskell"
     ]
 }
